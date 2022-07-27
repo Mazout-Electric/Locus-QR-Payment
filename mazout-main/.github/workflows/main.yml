@@ -1,0 +1,31 @@
+name: layer0 publish
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+      - name: Install packages
+        run: |
+          yarn 
+          yarn global add @layer0/cli@latest
+      - name: publish package
+        run: |
+          layer0 deploy --site=locus.cf --token=${{secrets.layer0DeployToken}}

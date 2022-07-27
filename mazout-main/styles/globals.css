@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,900;1,400&display=swap");
+
+.bg-gradient {
+	background: #47a06e;
+	background: -moz-linear-gradient(-45deg, #ee7752, #b0dd8d, #23a6d5, #23d5ab);
+	background: -webkit-linear-gradient(
+		-45deg,
+		#ee7752,
+		#b0dd8d,
+		#23a6d5,
+		#23d5ab
+	);
+	background: linear-gradient(-45deg, #ee7752, #b0dd8d, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#47a06e", endColorstr="#3b7cb4", GradientType=1);
+	-webkit-animation: gradient 15s ease infinite;
+	-moz-animation: gradient 15s ease infinite;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.box {
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #020438;
+	border-radius: 100%;
+	overflow: hidden;
+}
+.box .percent {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 64px;
+}
+.box .water {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	transform: translate(0, 100%);
+	background: #4d6de3;
+	transition: all 0.3s;
+}
+.box .water_wave {
+	width: 200%;
+	position: absolute;
+	bottom: 100%;
+}
+.box .water_wave_back {
+	right: 0;
+	fill: #c7eeff;
+	-webkit-animation: wave-back 1.4s infinite linear;
+	animation: wave-back 1.4s infinite linear;
+}
+.box .water_wave_front {
+	left: 0;
+	fill: #4d6de3;
+	margin-bottom: -1px;
+	-webkit-animation: wave-front 0.7s infinite linear;
+	animation: wave-front 0.7s infinite linear;
+}
+
+@-webkit-keyframes wave-front {
+	100% {
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes wave-front {
+	100% {
+		transform: translate(-50%, 0);
+	}
+}
+@-webkit-keyframes wave-back {
+	100% {
+		transform: translate(50%, 0);
+	}
+}
+@keyframes wave-back {
+	100% {
+		transform: translate(50%, 0);
+	}
+}
+
+.svg-box {
+	display: inline-block;
+	position: relative;
+	width: 150px;
+}
+
+.green-stroke {
+	stroke: #7cb342;
+}
+.circular circle.path {
+	stroke-dasharray: 330;
+	stroke-dashoffset: 0;
+	stroke-linecap: round;
+	opacity: 0.4;
+	animation: 3s infinite draw-circle ease-out;
+}
+.checkmark {
+	stroke-width: 6.25;
+	stroke-linecap: round;
+	position: absolute;
+	top: 56px;
+	left: 49px;
+	width: 52px;
+	height: 40px;
+}
+
+.checkmark path {
+	animation: 2s infinite draw-check ease-out;
+}
+
+@keyframes draw-circle {
+	0% {
+		stroke-dasharray: 0, 330;
+		stroke-dashoffset: 0;
+		opacity: 1;
+	}
+
+	80% {
+		stroke-dasharray: 330, 330;
+		stroke-dashoffset: 0;
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0.4;
+	}
+}
+
+@keyframes draw-check {
+	0% {
+		stroke-dasharray: 49, 80;
+		stroke-dashoffset: 48;
+		opacity: 0;
+	}
+
+	50% {
+		stroke-dasharray: 49, 80;
+		stroke-dashoffset: 48;
+		opacity: 1;
+	}
+
+	100% {
+		stroke-dasharray: 130, 80;
+		stroke-dashoffset: 48;
+	}
+}
